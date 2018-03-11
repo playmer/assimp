@@ -233,6 +233,8 @@ Object::Object(uint64_t id, const Element& element, const std::string& name)
 , id(id)
 {
     // empty
+
+    printf("Object name: %s\n", name.c_str());
 }
 
 // ------------------------------------------------------------------------------------------------

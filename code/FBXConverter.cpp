@@ -834,6 +834,18 @@ unsigned int Converter::ConvertMeshSingleMaterial( const MeshGeometry& mesh, con
     const MatIndexArray& mindices = mesh.GetMaterialIndices();
     aiMesh* const out_mesh = SetupEmptyMesh( mesh );
 
+
+
+    printf("%s\n", model.Name().c_str());
+    std::string name = model.Name();
+    if (name.substr(0, 7) == "Model::") {
+        name = name.substr(7);
+    }
+
+    if (name.length()) {
+        out_mesh->mName.Set(name);
+    }
+
     const std::vector<aiVector3D>& vertices = mesh.GetVertices();
     const std::vector<unsigned int>& faces = mesh.GetFaceIndexCounts();
 
@@ -980,6 +992,18 @@ unsigned int Converter::ConvertMeshMultiMaterial( const MeshGeometry& mesh, cons
     const aiMatrix4x4& node_global_transform )
 {
     aiMesh* const out_mesh = SetupEmptyMesh( mesh );
+
+    // set name
+
+    printf("%s\n", model.Name().c_str());
+    std::string name = model.Name();
+    if (name.substr(0, 7) == "Model::") {
+        name = name.substr(7);
+    }
+
+    if (name.length()) {
+        out_mesh->mName.Set(name);
+    }
 
     const MatIndexArray& mindices = mesh.GetMaterialIndices();
     const std::vector<aiVector3D>& vertices = mesh.GetVertices();
